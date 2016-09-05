@@ -1,17 +1,16 @@
-CREATE TABLE user (
+CREATE TABLE public.user (
   email VARCHAR(256) PRIMARY KEY
 );
 
-CREATE TABLE project (
-  name VARCHAR(256) PRIMARY KEY
-  type VARCHAR(64)
-  target INTEGER NOT NULL
-  created_by VARCHAR(256) REFERENCES user(email) ON DELETE CASCADE
+CREATE TABLE public.project (
+  title VARCHAR(256) PRIMARY KEY,
+  target_amount INTEGER NOT NULL,
+  created_by VARCHAR(256) REFERENCES public.user(email) ON DELETE CASCADE,
   current_value INTEGER DEFAULT 0
 );
 
-CREATE TABLE backing (
-  backed_by VARCHAR(256) references user(email) ON DELETE CASCADE
-  backed_for VARCHAR(256) references project(name) ON DELETE CASCADE
-  amount DOUBLE
+CREATE TABLE public.backing (
+  backed_by VARCHAR(256) references public.user(email) ON DELETE CASCADE,
+  backed_for VARCHAR(256) references public.project(title) ON DELETE CASCADE,
+  amount MONEY NOT NULL
 );
