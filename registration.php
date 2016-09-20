@@ -1,10 +1,4 @@
-<?php
-/*
-Author: Shi Tianyuan
 
-*/
-include('includes/header_login.html');
-?>
 
 <!DOCTYPE html>
 <html>
@@ -33,14 +27,14 @@ input.submit{background-color: #34495E;
 		$email = $_POST['email'];
         $pass = $_POST['pass'];
 		$username = stripslashes($username);
-		$username = mysqli_real_escape_string($connection,$username);
+		$username = pg_escape_string($conn,$username);
 		$email = stripslashes($email);
-		$email = mysqli_real_escape_string($connection,$email);
+		$email = pg_escape_string($conn,$email);
 		$pass = stripslashes($pass);
-		$pass = mysqli_real_escape_string($connection,$pass);
+		$pass = pg_escape_string($conn,$pass);
 		
-        $query = "INSERT into `users` (username, pass, email) VALUES ('$username', '".md5($pass)."', '$email')";
-        $result = mysqli_query($connection,$query);
+        $query = "INSERT into users (username, pass, email) VALUES ('$username', '".md5($pass)."', '$email')";
+        $result = pg_query($conn,$query);
         if($result){
             echo "<div class='form'><h3>You are registered successfully.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
         }
