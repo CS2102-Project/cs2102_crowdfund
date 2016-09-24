@@ -1,6 +1,6 @@
 CREATE TABLE public.user (
 
-  user_id mediumint(8) UNSIGNED NOT NULL,
+  user_id serial NOT NULL,
   username varchar(30) NOT NULL,
   pass char(40) NOT NULL,
   email VARCHAR(256) PRIMARY KEY
