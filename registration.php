@@ -1,11 +1,18 @@
-
-
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Registration</title>
-<link rel="stylesheet" href="css/style.css" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>registration</title>
+    <meta name="description" content="iBEAT is a interface for self-monitoring for pregnant women."/>
+
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="dist/css/flat-ui.css" rel="stylesheet">
 <style type="text/css">
 
 input.submit{background-color: #34495E;
@@ -27,14 +34,14 @@ input.submit{background-color: #34495E;
 		$email = $_POST['email'];
         $pass = $_POST['pass'];
 		$username = stripslashes($username);
-		$username = pg_escape_string($conn,$username);
+		$username = pg_escape_string($dbconn,$username);
 		$email = stripslashes($email);
-		$email = pg_escape_string($conn,$email);
+		$email = pg_escape_string($dbconn,$email);
 		$pass = stripslashes($pass);
-		$pass = pg_escape_string($conn,$pass);
+		$pass = pg_escape_string($dbconn,$pass);
 		
-        $query = "INSERT into users (username, pass, email) VALUES ('$username', '".md5($pass)."', '$email')";
-        $result = pg_query($conn,$query);
+        $query = "INSERT into public.user (username, pass, email) VALUES ('$username', '".md5($pass)."', '$email')";
+        $result = pg_query($dbconn,$query);
         if($result){
             echo "<div class='form'><h3>You are registered successfully.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
         }
@@ -51,7 +58,5 @@ input.submit{background-color: #34495E;
 </div>
 <?php } ?>
 </body>
-<?php
-include("includes/footer.html");
-?>
+
 </html>
