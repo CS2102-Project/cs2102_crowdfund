@@ -1,3 +1,7 @@
+DROP TABLE public.backing;
+DROP TABLE public.project;
+DROP TABLE public.user;
+
 CREATE TABLE public.user (
 
   user_id serial NOT NULL,
@@ -5,6 +9,7 @@ CREATE TABLE public.user (
   pass char(40) NOT NULL,
   email VARCHAR(256) PRIMARY KEY
 );
+
 
 CREATE TABLE public.project (
   title VARCHAR(256) PRIMARY KEY,
