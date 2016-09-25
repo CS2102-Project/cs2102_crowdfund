@@ -168,11 +168,11 @@ img#topimg{margin-left: 50px;height: 280px;width:auto;padding-top: 15px;}
    
          
           $_SESSION['username'] = $username;
-            $query = "SELECT user_id FROM public.user WHERE username = '$username'";
+            $query = "SELECT email FROM public.user WHERE username = '$username'";
             $result = pg_query($dbconn,$query) or die(pg_last_error($dbconn));
             $rows = pg_fetch_array($result, NULL,PGSQL_ASSOC);
-            $_SESSION['user_id'] = $rows["user_id"];
-            if(isset($_SESSION['user_id'])){echo "You have logged in successfully, click<a href = 'index.php'> here</a> to go to your homepage";}
+            $_SESSION['email'] = $rows["email"];
+            if(isset($_SESSION['email'])){echo "You have logged in successfully, click<a href = 'index.php'> here</a> to go to your homepage";}
             else echo"fail";
 
             header("Location: index.php"); // Redirect user to index.php

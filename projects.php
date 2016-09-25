@@ -31,7 +31,8 @@ echo '<p> Click <a href = "create_project.php"> here</a> to create a new project
 
 echo '<div> project title : target_amount </div>';
 while ($arr = pg_fetch_array($result, NULL, PGSQL_ASSOC)) {
-    echo "<div><a href = project_display.php>" . $arr["title"] . " : " . $arr["target_amount"] . "</a></div>";
+	$current_title = $arr["title"];
+    echo "<div><a href = 'project_display.php?title=".$current_title." '>" . $arr["title"] . " : " . $arr["target_amount"] . "</a></div>";
 }
 
 pg_free_result($result);
