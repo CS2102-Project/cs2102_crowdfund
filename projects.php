@@ -27,7 +27,7 @@ CREATE TABLE public.project (
 );
 
 */
-echo "<p> Click <a href = 'create_project.php'> here</a> to create a new project.</p>"
+echo '<p> Click <a href = "create_project.php"> here</a> to create a new project.</p>';
 
 echo '<div> project title : target_amount </div>';
 while ($arr = pg_fetch_array($result, NULL, PGSQL_ASSOC)) {
