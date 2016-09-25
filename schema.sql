@@ -13,12 +13,11 @@ CREATE TABLE public.user (
 CREATE TABLE public.project (
   title VARCHAR(256) PRIMARY KEY,
   descripton VARCHAR(256),
-  startDate DATE NOT NULL,
-  endDate DATE NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
   categories VARCHAR(62) NOT NULL,
   target_amount INTEGER NOT NULL,
-  created_by VARCHAR(256) REFERENCES public.user(email) ON DELETE CASCADE,
-  current_value INTEGER DEFAULT 0
+  created_by VARCHAR(256) REFERENCES public.user(email) ON DELETE CASCADE
 );
 
 CREATE TABLE public.backing (

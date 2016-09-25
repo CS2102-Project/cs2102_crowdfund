@@ -6,29 +6,25 @@ $query = "SELECT * FROM public.project WHERE title = '$title' ";
             $result = pg_query($dbconn,$query) or die(pg_last_error($dbconn));
             $arr = pg_fetch_array($result, NULL,PGSQL_ASSOC);
             $rows = pg_num_rows($result);
-if ($rows > 0){
 
-	echo '<table width="70%" border="0" cellspacing="2" cellpadding="2" align="center">
-		<tr>
-			<td align="left" width="5%"><em>title</em>:</td>
-			<td align="left" width="5%"><em>descripton</em>:</td>
-			<td align="left" width="5%"><em>startDate</em>:</td>
-			<td align="left" width="5%"><em>endDate</em>:</td>
-			<td align="left" width="5%"><em>categories</em>:</td>
-			<td align="left" width="5%"><em>target_amount</em>:</td>
-			<td align="left" width="5%"><em>created_by</em>:</td>
-			<td align="left" width="5%"><em>current_value</em>:</td>
-		</tr>';
-	echo'<tr>
-				<td align="left">' . $arr['title'] . '</td>
-				<td align="left">' . $arr['descripton'] . '</td>
-				<td align="left">' . $arr['startDate'] . '</td>
-				<td align="left">' . $arr['endDate'] . '</td>
-				<td align="left">' . $arr['categories'] . '</td>
-				<td align="left">' . $arr['target_amount'] . '</td>
-				<td align="left">' . $arr['created_by'] . '</td>
-				<td align="left">' . $arr['current_value'] . '</td>
+$current_value_query = "SELECT SUM(amount) FROM public.backing WHERE backed_for = '$title'";
+$current_value = pg_query($dbconn, $query) or die(pg_last_error($dbconn));
+
+
+if ($rows > 0){
+	echo '<div><a href = 'back_project.php?title=".$title."'></a></div>'
+
+	echo '<h3>' . $title . '</h3>';
+	echo'<div>
+				<p>' . $arr['title'] . '</p>
+				<p>' . $arr['descripton'] . '</p>
+				<p>' . $arr['start_date'] . '</p>
+				<p>' . $arr['end_date'] . '</p>
+				<p>' . $arr['categories'] . '</p>
+				<p>' . $arr['target_amount'] . '</p>
+				<p>' . $arr['created_by'] . '</p>
+				<p>' . $current_value . '</p>
 				
-			</tr>';
+			</div>';
 }
 ?>
